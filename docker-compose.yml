@@ -1,0 +1,20 @@
+---
+version: "3.8"
+
+services:
+  bitwarden:
+    env_file:
+      - settings.env
+    image: ${REGISTRY:-bitwarden}/self-host:${TAG:-beta}
+    restart: always
+    ports:
+      - "11180:8080"
+      - "11443:8443"
+    volumes:
+      - bitwarden:/etc/bitwarden
+      - logs:/var/log/bitwarden
+
+volumes:
+  bitwarden:
+  logs:
+  data:
